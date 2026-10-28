@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Mindset Revolution</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: sito editoriale a colonna singola, molto spazio, titoli serif grandi, una sola nota di colore (ottone spento).
+   Motivo grafico ricorrente: cerchi che si toccano in un punto (la "rivoluzione"), usato in hero, foto, icone e copertine. */
+:root {
+  --bg: #0c0d0e;
+  --surface: #121416;
+  --surface-2: #181b1d;
+  --line: #262b2e;
+  --fg: #ecebe6;
+  --text: #d6d4cf;
+  --muted: #9aa0a6;
+  --accent: #b9a77c;
+  --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.7;
+  font-weight: 400;
+  margin: 0;
+  overflow-x: clip;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: 1080px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; margin: 0; text-wrap: balance; letter-spacing: -0.01em; color: var(--fg); }
+p { margin: 0; }
+em { font-style: italic; color: var(--accent); }
+.eyebrow { display: flex; align-items: center; gap: 14px; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--accent); flex: none; }
+.band { background: var(--surface); box-shadow: 0 0 0 100vmax var(--surface); clip-path: inset(0 -100vmax); }
+
+/* header */
+header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 16px; }
+.brand { font-family: var(--display); font-size: 25px; letter-spacing: 0.01em; color: var(--fg); }
+nav { display: flex; flex-wrap: wrap; gap: 4px 26px; align-items: center; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+nav a { padding-block: 4px; transition: color .2s; }
+nav a:hover, nav a[aria-current="page"] { color: var(--fg); }
+nav a.cta { color: var(--accent); border-bottom: 1px solid var(--accent); }
+
+/* buttons */
+.btn { display: inline-block; padding: 15px 30px; border: 1px solid var(--accent); color: var(--bg); background: var(--accent); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; cursor: pointer; font-family: var(--body); transition: background .2s, color .2s, border-color .2s; }
+.btn:hover { background: transparent; color: var(--accent); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: #3a4044; }
+.btn.ghost:hover { border-color: var(--fg); color: var(--fg); }
+
+/* hero */
+.hero { position: relative; overflow: clip; padding-block: clamp(64px, 11vw, 144px) clamp(56px, 8vw, 104px); }
+.hero > *:not(.hero-art) { position: relative; z-index: 1; }
+.hero-art { position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: min(880px, 100%); aspect-ratio: 7 / 6; pointer-events: none; z-index: 0; opacity: .9; }
+.hero-art svg { display: block; width: 100%; height: 100%; }
+.hero h1 { font-size: clamp(46px, 9vw, 112px); max-width: 14ch; }
+.hero .lead { max-width: 54ch; margin-top: 32px; color: var(--text); font-size: 19px; font-weight: 300; }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px; }
+
+/* striscia dati */
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.facts > div { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 4px 14px; padding: 26px 20px 26px 0; min-width: 0; align-items: center; }
+.facts > div + div { padding-left: 20px; border-left: 1px solid var(--line); }
+.facts svg { grid-row: 1 / span 2; width: 28px; height: 28px; color: var(--accent); }
+.facts dt { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.facts dd { margin: 0; font-family: var(--display); font-size: 27px; line-height: 1.1; color: var(--fg); }
+
+/* sezioni */
+section.block { padding-block: clamp(72px, 10vw, 136px); scroll-margin-top: 72px; }
+.block h2 { font-size: clamp(36px, 5.4vw, 62px); margin-top: 20px; max-width: 18ch; }
+.split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.portrait { position: relative; aspect-ratio: 4 / 5; max-width: 100%; background: linear-gradient(160deg, var(--surface-2), #0f1112); border: 1px solid var(--line); overflow: hidden; }
+.portrait svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.portrait .tag { position: absolute; left: 20px; bottom: 18px; right: 20px; display: flex; justify-content: space-between; align-items: end; gap: 12px; }
+.portrait .mono { font-family: var(--display); font-size: clamp(60px, 9vw, 96px); color: var(--fg); line-height: .9; }
+.portrait small { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; text-align: right; }
+.prose { display: grid; gap: 22px; max-width: 60ch; }
+.prose strong { color: var(--fg); font-weight: 600; }
+.prose .sig { font-family: var(--display); font-size: 32px; color: var(--fg); margin-top: 6px; }
+
+.quote { position: relative; margin: clamp(56px, 8vw, 96px) 0 0; padding: clamp(32px, 5vw, 56px) 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 8px 24px; }
+.quote::before { content: "“"; font-family: var(--display); font-size: 140px; line-height: .75; color: var(--accent); }
+.quote p { font-family: var(--display); font-size: clamp(28px, 3.8vw, 44px); line-height: 1.2; color: var(--fg); max-width: 32ch; text-wrap: balance; }
+.quote span { grid-column: 2; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+/* metodo */
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 56px; border-top: 1px solid var(--line); }
+.pillars > div { position: relative; padding: 40px 32px 8px 0; min-width: 0; }
+.pillars > div + div { padding-left: 32px; border-left: 1px solid var(--line); }
+.pillars > div::before { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.pillars > div + div::before { left: -4px; }
+.pillars .mark { width: 56px; height: 56px; display: block; margin-bottom: 28px; }
+.pillars h3 { font-size: clamp(40px, 5vw, 56px); }
+.pillars .what { margin-top: 10px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.pillars p:last-child { margin-top: 14px; max-width: 34ch; }
+.textlink { color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 3px; font-size: 15px; letter-spacing: 0.02em; }
+.textlink:hover { color: var(--fg); border-color: var(--fg); }
+@media (max-width: 760px) {
+  .pillars { grid-template-columns: minmax(0, 1fr); }
+  .pillars > div, .pillars > div + div { padding: 32px 0 32px; border-left: 0; border-bottom: 1px solid var(--line); }
+  .pillars > div + div::before { left: 0; }
+}
+
+/* percorso */
+.path { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+.path-intro { position: sticky; top: 100px; display: grid; gap: 28px; }
+.path-intro .prose { color: var(--text); }
+.path-intro .btn { justify-self: start; }
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 11px; top: 14px; bottom: 14px; width: 1px; background: var(--line); }
+.timeline li { position: relative; padding: 0 0 44px 56px; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before { content: ""; position: absolute; left: 0; top: 8px; width: 23px; height: 23px; border-radius: 50%; border: 1px solid var(--accent); background: var(--surface); }
+.timeline li::after { content: ""; position: absolute; left: 8px; top: 16px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.timeline .step { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.timeline h3 { font-size: 30px; margin-top: 6px; }
+.timeline p { color: var(--text); margin-top: 10px; max-width: 52ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.chip { padding: 6px 14px; border: 1px solid #3a4044; font-size: 13px; color: var(--fg); letter-spacing: 0.04em; }
+
+/* per chi */
+.who { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 56px; }
+.who > div { background: var(--surface); border: 1px solid var(--line); padding: 28px 26px 32px; min-width: 0; transition: border-color .25s; }
+.who > div:hover { border-color: var(--accent); }
+.who .mark { width: 56px; height: 56px; display: block; margin-bottom: 36px; }
+.who h3 { font-size: 30px; }
+.who p { color: var(--muted); margin-top: 10px; font-size: 16px; }
+
+/* articoli */
+.list { margin-top: 56px; border-top: 1px solid var(--line); }
+.row { display: grid; grid-template-columns: 168px minmax(0, 1fr) 40px; gap: 8px 32px; padding-block: 28px; border-bottom: 1px solid var(--line); align-items: center; transition: padding-left .25s; }
+.row:hover { padding-left: 10px; }
+.cover { aspect-ratio: 4 / 3; max-width: 100%; background: var(--bg); border: 1px solid var(--line); overflow: hidden; }
+.cover svg { display: block; width: 100%; height: 100%; }
+.band .cover { background: #0e1011; }
+.row .meta, .meta { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.row .meta b { color: var(--accent); font-weight: 600; }
+.row h3 { font-size: clamp(27px, 3.4vw, 38px); margin-top: 8px; }
+.row p { color: var(--text); margin-top: 10px; max-width: 58ch; font-size: 16px; }
+.row .arrow { color: var(--accent); font-size: 24px; text-align: right; transition: transform .25s; }
+.row:hover .arrow { transform: translateX(4px); }
+.more { margin-top: 40px; }
+.sample { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 3px 9px; border: 1px solid #3a4044; font-family: var(--body); font-size: 11px; letter-spacing: 0.14em; color: var(--muted); font-weight: 600; }
+
+/* articolo singolo */
+.back { display: inline-block; color: var(--muted); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; padding-top: 40px; font-weight: 500; }
+.back:hover { color: var(--fg); }
+.article-head { padding-block: clamp(40px, 6vw, 72px) 40px; max-width: 800px; }
+.article-head h1 { font-size: clamp(40px, 6.5vw, 78px); margin-top: 22px; }
+.article-head .meta { margin-top: 24px; text-transform: none; letter-spacing: 0.02em; font-size: 15px; font-weight: 400; }
+.article-cover { aspect-ratio: 21 / 8; background: var(--surface); border: 1px solid var(--line); overflow: hidden; margin-bottom: 56px; }
+.article-cover svg { display: block; width: 100%; height: 100%; }
+.article-body { max-width: 680px; display: grid; gap: 26px; font-size: 19px; line-height: 1.8; color: var(--text); padding-bottom: 72px; }
+.article-body > p:first-child { font-size: 22px; color: var(--fg); font-weight: 300; line-height: 1.6; }
+.article-body h2 { font-size: 36px; margin-top: 28px; max-width: none; }
+.after { border-top: 1px solid var(--line); padding-block: 48px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+.after .nextlabel { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.after .nexttitle { font-family: var(--display); font-size: 32px; display: block; margin-top: 6px; color: var(--fg); max-width: 22ch; line-height: 1.1; }
+
+/* contatti */
+.contact { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(40px, 6vw, 88px); align-items: start; }
+.contact .lead { margin-top: 24px; max-width: 46ch; }
+.ticks { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 14px; }
+.ticks li { display: flex; gap: 14px; align-items: center; color: var(--fg); }
+.ticks svg { width: 22px; height: 22px; flex: none; color: var(--accent); }
+.addr { margin-top: 36px; font-size: 15px; color: var(--muted); }
+.panel { background: var(--surface); border: 1px solid var(--line); padding: clamp(24px, 4vw, 44px); }
+form { display: grid; gap: 22px; }
+label { display: grid; gap: 6px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+input, select, textarea { background: transparent; color: var(--fg); border: 0; border-bottom: 1px solid #3a4044; padding: 10px 0; font: inherit; font-weight: 400; font-size: 17px; letter-spacing: 0; text-transform: none; border-radius: 0; width: 100%; min-width: 0; }
+select option { background: var(--surface); color: var(--fg); }
+textarea { resize: vertical; min-height: 110px; }
+input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--accent); }
+form .btn { justify-self: start; }
+.status { min-height: 24px; color: var(--accent); font-size: 14px; }
+
+footer { padding-block: 40px; color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); }
+
+@media (max-width: 860px) {
+  .path { grid-template-columns: minmax(0, 1fr); }
+  .path-intro { position: static; }
+}
+@media (max-width: 760px) {
+  body { font-size: 16.5px; }
+  .hero-art { width: 120%; right: -45%; opacity: .55; }
+  .split, .contact { grid-template-columns: minmax(0, 1fr); }
+  .portrait { max-width: 340px; }
+  .facts > div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+  .quote { grid-template-columns: minmax(0, 1fr); }
+  .quote::before { font-size: 100px; height: 56px; }
+  .quote span { grid-column: 1; }
+  .row { grid-template-columns: 96px minmax(0, 1fr); gap: 8px 20px; align-items: start; }
+  .row .arrow { display: none; }
+  .row p { display: none; }
+  .article-cover { aspect-ratio: 16 / 9; }
+  nav { gap: 4px 16px; font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .row, .row .arrow, .btn, nav a, .who > div { transition: none; } }
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home">Mindset Revolution</a>
+    <nav aria-label="Principale">
+      <a href="#metodo" data-nav="metodo">Metodo</a>
+      <a href="#storia" data-nav="storia">Storia</a>
+      <a href="#percorso" data-nav="percorso">Percorso</a>
+      <a href="#articoli" data-nav="articoli">Articoli</a>
+      <a href="#contatti" class="cta">Contatti</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app" class="wrap"></main>
+
+<footer class="wrap">
+  <span>© 2026 Sara Rinaldi · Mindset Revolution</span>
+  <span>Bozza di lavoro</span>
+</footer>
+
+<script>
+/* ---------------------------------------------------------------
+   ARTICOLI: per aggiungerne uno basta una nuova voce in questo elenco.
+   Nel corpo, le righe che iniziano con "## " diventano sottotitoli.
+   I tre articoli qui sotto sono testi di esempio.
+---------------------------------------------------------------- */
+const ARTICLES = [
+  {
+    slug: "pressione-prima-della-prova",
+    date: "2026-10-21",
+    tag: "Pressione",
+    minutes: 4,
+    title: "La pressione prima della prova non va eliminata",
+    excerpt: "Una riunione decisiva, una gara, un colloquio. Il corpo si attiva e molti lo leggono come un segnale di allarme.",
+    body: [
+      "Prima di una prova importante il battito sale, la mente accelera, lo stomaco si stringe. Molte persone cercano di spegnere tutto questo, e proprio lì perdono energia.",
+      "## Cambiare il significato del segnale",
+      "L'attivazione fisica è la stessa che serve per rendere al meglio. Cambia l'interpretazione: se la leggi come paura, ti blocca; se la leggi come preparazione, diventa carburante.",
+      "## Un esercizio per cominciare",
+      "Prima della prossima prova scrivi tre righe: che cosa sento, che cosa significa per me, che cosa posso fare nei prossimi dieci minuti. Poi fai solo quello. Nel percorso lavoriamo su questo tipo di routine, adattata al tuo ruolo."
+    ]
+  },
+  {
+    slug: "il-potere-del-perche",
+    date: "2026-10-07",
+    tag: "Obiettivi",
+    minutes: 5,
+    title: "Gli obiettivi non bastano: serve un perché",
+    excerpt: "Un obiettivo dice dove vuoi arrivare. Solo il motivo ti tiene in marcia quando la strada si fa lunga.",
+    body: [
+      "Fissare obiettivi è facile. Mantenerli quando il lavoro si accumula, la squadra rallenta o la fiducia cala è un'altra storia.",
+      "## La forza che sta sotto",
+      "Chi regge nel tempo ha di solito un motivo chiaro e personale, legato ai propri valori. Non è uno slogan: è la risposta concreta alla domanda «perché lo faccio davvero?».",
+      "## Come trovarlo",
+      "Parti da un momento in cui ti sei sentito/a pienamente al tuo posto. Che cosa stava succedendo? Quale valore era in gioco? Da lì si costruiscono obiettivi che ti appartengono, non che ti vengono imposti."
+    ]
+  },
+  {
+    slug: "credenze-limitanti",
+    date: "2026-09-23",
+    tag: "Autostima",
+    minutes: 4,
+    title: "Come riconoscere una credenza che ti limita",
+    excerpt: "Le frasi che ti ripeti senza accorgertene decidono più scelte di quanto pensi.",
+    body: [
+      "«Non sono portato per questo», «non è il mio momento», «se sbaglio perdo tutto». Sono frasi che sembrano fatti e funzionano come regole.",
+      "## Tre segnali",
+      "Una credenza limitante usa parole assolute (sempre, mai, tutto), si presenta come una verità senza eccezioni e ti fa rinunciare prima ancora di provare.",
+      "## Metterla alla prova",
+      "Cerca un'eccezione: una volta in cui è andata diversamente. Una sola basta per smettere di trattarla come una legge e iniziare a trattarla come un'ipotesi."
+    ]
+  }
+];
+
+const app = document.getElementById("app");
+const fmt = d => new Date(d + "T12:00:00").toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
+const sorted = () => [...ARTICLES].sort((a, b) => b.date.localeCompare(a.date));
+
+/* Motivo grafico: n cerchi che si toccano in un punto. v = lato del contatto, acc = cerchio in ottone */
+function tangent({ w, h, cx, cy, R, n, v, acc, line = "#30363a", dot = 3 }) {
+  const d = [[1, 0], [-1, 0], [0, 1], [0, -1]][v % 4];
+  let s = `<svg viewBox="0 0 ${w} ${h}" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid meet">`;
+  for (let i = 0; i < n; i++) {
+    const r = R * (1 - i / n);
+    const x = cx + d[0] * (R - r), y = cy + d[1] * (R - r);
+    const on = i === acc;
+    s += `<circle cx="${x}" cy="${y}" r="${r}" stroke="${on ? "#b9a77c" : line}" stroke-width="${on ? 1.4 : 1}" vector-effect="non-scaling-stroke"/>`;
+  }
+  s += `<circle cx="${cx + d[0] * R}" cy="${cy + d[1] * R}" r="${dot}" fill="#b9a77c"/></svg>`;
+  return s;
+}
+/* Hero: linee fluide che si restringono verso destra, come l'attenzione che si mette a fuoco */
+function waveSVG() {
+  const W = 700, H = 600, n = 19, acc = 7;
+  let g = "", dot = "";
+  for (let i = 0; i < n; i++) {
+    const base = 60 + i * (H - 120) / (n - 1);
+    let d = "";
+    for (let x = 0; x <= W; x += 10) {
+      const t = x / W;
+      const y = H / 2 + (base - H / 2) * (1 - 0.6 * t) + 52 * Math.sin(t * 5.4 + i * 0.3) * Math.sin(Math.PI * t);
+      d += (x === 0 ? "M" : "L") + x + " " + y.toFixed(1) + " ";
+    }
+    const on = i === acc;
+    g += `<path d="${d}" stroke="${on ? "#b9a77c" : "#2e3438"}" stroke-width="${on ? 1.4 : 1}" vector-effect="non-scaling-stroke"/>`;
+  }
+  /* cinque nodi lungo la linea in ottone: i 5 passaggi dell'Intake Session */
+  const yAt = (i, t) => H / 2 + ((60 + i * (H - 120) / (n - 1)) - H / 2) * (1 - 0.6 * t) + 52 * Math.sin(t * 5.4 + i * 0.3) * Math.sin(Math.PI * t);
+  [0.43, 0.56, 0.69, 0.82, 0.95].forEach((t, k) => {
+    const x = (t * W).toFixed(1), y = yAt(acc, t);
+    dot += `<circle cx="${x}" cy="${y.toFixed(1)}" r="${k === 4 ? 6 : 5}" fill="${k === 4 ? "#b9a77c" : "#0c0d0e"}" stroke="#b9a77c" stroke-width="1.4"/>`
+         + `<text x="${x}" y="${(y - 17).toFixed(1)}" text-anchor="middle" font-size="15" font-weight="600" fill="#b9a77c" stroke="#0c0d0e" stroke-width="5" paint-order="stroke" font-family="Manrope, sans-serif">${k + 1}</text>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" fill="none" preserveAspectRatio="xMaxYMid meet" aria-hidden="true">
+    <defs><linearGradient id="wfade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".4" stop-color="#fff" stop-opacity="1"/></linearGradient>
+    <mask id="wmask"><rect width="${W}" height="${H}" fill="url(#wfade)"/></mask></defs>
+    <g mask="url(#wmask)">${g}${dot}</g></svg>`;
+}
+const hash = s => [...s].reduce((a, c) => a + c.charCodeAt(0), 0);
+const coverSVG = (slug) => tangent({ w: 400, h: 300, cx: 200, cy: 150, R: 130, n: 5, v: hash(slug), acc: 2 });
+const wideSVG = (slug) => tangent({ w: 840, h: 320, cx: 420, cy: 160, R: 150, n: 6, v: hash(slug), acc: 2, dot: 3.5 });
+const markSVG = (v) => `<svg class="mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">${tangent({ w: 64, h: 64, cx: 32, cy: 32, R: 27, n: 3, v, acc: 1, line: "#4a5256", dot: 2.5 }).replace(/<\/?svg[^>]*>/g, "")}</svg>`;
+
+const ICON = {
+  compass: `<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="14" cy="14" r="11"/><path d="M18.5 9.5l-2.7 6.3-6.3 2.7 2.7-6.3z"/></svg>`,
+  calendar: `<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="4" y="6" width="20" height="18" rx="1"/><path d="M4 12h20M10 3v5M18 3v5"/></svg>`,
+  clock: `<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="14" cy="14" r="11"/><path d="M14 7.5V14l4.5 3"/></svg>`,
+  lock: `<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><rect x="5.5" y="12" width="17" height="12" rx="1"/><path d="M9.5 12V9a4.5 4.5 0 019 0v3"/></svg>`,
+  tick: `<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="11" cy="11" r="9.5"/><path d="M6.8 11.3l3 3 5.4-6"/></svg>`
+};
+
+function listRows(items) {
+  return items.map(a => `
+    <a class="row" href="#articolo-${a.slug}">
+      <div class="cover">${coverSVG(a.slug)}</div>
+      <div>
+        <p class="meta"><b>${a.tag}</b> · ${fmt(a.date)}</p>
+        <h3>${a.title}</h3>
+        <p>${a.excerpt}</p>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>`).join("");
+}
+
+function contactBlock() {
+  return `
+  <section class="block" id="contatti">
+    <div class="contact">
+      <div>
+        <p class="eyebrow">Contatti</p>
+        <h2>Il tuo successo è il mio unico obiettivo.</h2>
+        <p class="lead">Che tu sia un imprenditore, un atleta, un professionista o semplicemente una persona che sente il bisogno di sbloccare il proprio potenziale e ritrovare la propria strada: se vuoi evolvere senza perdere la tua serenità, iniziamo da qui.</p>
+        <ul class="ticks">
+          <li>${ICON.tick}Spazio protetto, con riservatezza assoluta</li>
+          <li>${ICON.tick}Niente schemi rigidi, tutto su misura</li>
+          <li>${ICON.tick}Sessioni da 30–45 minuti di focus intenso</li>
+        </ul>
+        <p class="addr">[email di Sara da inserire]</p>
+      </div>
+      <div class="panel">
+        <form id="cform" novalidate>
+          <label for="f-nome">Nome<input id="f-nome" name="nome" autocomplete="name"></label>
+          <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email"></label>
+          <label for="f-ruolo">Di cosa ti occupi
+            <select id="f-ruolo" name="ruolo">
+              <option>Imprenditore/trice</option>
+              <option>Atleta</option>
+              <option>Professionista</option>
+              <option>Altro</option>
+            </select>
+          </label>
+          <label for="f-msg">Messaggio<textarea id="f-msg" name="msg"></textarea></label>
+          <button class="btn" type="submit">Richiedi l'Intake Session</button>
+          <p class="status" id="status" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>`;
+}
+
+function home() {
+  const latest = sorted().slice(0, 3);
+  return `
+  <section class="hero">
+    <div class="hero-art" aria-hidden="true">${waveSVG()}</div>
+    <h1>Performance d'eccellenza. <em>Equilibrio</em> duraturo.</h1>
+    <p class="lead">Inizia oggi la tua evoluzione. Con un percorso strutturato impariamo a mappare i reali obiettivi, gestire la pressione interna e definire flussi d'azione efficaci per sbloccare la tua visione di successo.</p>
+    <div class="actions">
+      <a class="btn" href="#contatti">Prenota l'Intake Session</a>
+      <a class="btn ghost" href="#percorso">Scopri il percorso</a>
+    </div>
+  </section>
+  <dl class="facts">
+    <div>${ICON.compass}<dt>Esperienza</dt><dd>Oltre 5 anni</dd></div>
+    <div>${ICON.calendar}<dt>Ritmo</dt><dd>3–4 sessioni al mese</dd></div>
+    <div>${ICON.clock}<dt>Durata</dt><dd>30–45 minuti</dd></div>
+    <div>${ICON.lock}<dt>Riservatezza</dt><dd>Assoluta</dd></div>
+  </dl>
+
+  <section class="block" id="metodo">
+    <p class="eyebrow">Il metodo</p>
+    <h2>Tre mosse per passare dall'intenzione all'azione.</h2>
+    <div class="pillars">
+      <div>${markSVG(0)}<h3>Mappare</h3><p class="what">I reali obiettivi</p><p>Partiamo da dove sei: il tuo ruolo, la tua routine, ciò che vuoi davvero. Troviamo il tuo «perché», la forza che regge tutto il resto.</p></div>
+      <div>${markSVG(1)}<h3>Gestire</h3><p class="what">La pressione interna</p><p>Lavoriamo su stress, credenze limitanti e conflitti, perché l'eccellenza non si paghi con la tua serenità.</p></div>
+      <div>${markSVG(2)}<h3>Agire</h3><p class="what">Flussi d'azione efficaci</p><p>Gli esercizi pratici tra una sessione e l'altra trasformano ciò che hai capito in abitudini concrete.</p></div>
+    </div>
+    <p class="more"><a class="textlink" href="#percorso">Vedi i 5 passaggi dell'Intake Session →</a></p>
+  </section>
+
+  <section class="block" id="storia" style="padding-top:0">
+    <div class="split">
+      <div class="portrait" role="img" aria-label="Spazio per la foto di Sara">
+        ${tangent({ w: 400, h: 500, cx: 200, cy: 250, R: 190, n: 6, v: 3, acc: 3, line: "#2a3033", dot: 3.5 })}
+        <div class="tag"><span class="mono">SR</span><small>Qui andrà<br>la foto di Sara</small></div>
+      </div>
+      <div>
+        <p class="eyebrow">La mia storia</p>
+        <h2>Ho imparato a leggere le persone viaggiando.</h2>
+        <div class="prose" style="margin-top:36px">
+          <p>Ciao, sono Sara. A 19 anni ho preso in mano la mia vita e ho iniziato a girare il mondo. Non sono diventata una coach restando seduta dietro una scrivania a leggere manuali di teoria.</p>
+          <p>Ho viaggiato, esplorato, vissuto da vicino i volti e le storie di culture diverse. Questo viaggio mi ha permesso di sviluppare un dono innato: la capacità di <strong>leggere le persone oltre la superficie</strong>, decodificando i loro reali bisogni in pochi istanti.</p>
+          <p>Da oltre 5 anni metto questa sensibilità internazionale al servizio di chiunque desideri una svolta: dai profili junior ai ruoli di livello senior, fino a chi semplicemente vuole ritrovare la bussola nella propria vita quotidiana.</p>
+          <p class="sig">Sara Rinaldi</p>
+        </div>
+      </div>
+    </div>
+    <blockquote class="quote">
+      <p>Il vero successo non è una vetta da raggiungere in solitudine, ma un percorso da fare insieme, proteggendo il tuo tempo, la tua serenità e la tua salute.</p>
+      <span>La mia filosofia: il valore del dono</span>
+    </blockquote>
+  </section>
+
+  <div class="band">
+  <section class="block" id="percorso">
+    <div class="path">
+      <div class="path-intro">
+        <div>
+          <p class="eyebrow">L'alleanza strategica</p>
+          <h2>Si comincia con l'Intake Session.</h2>
+        </div>
+        <div class="prose">
+          <p>È la base del nostro viaggio: uno spazio protetto, coperto da riservatezza assoluta, in cui mappiamo la tua situazione attuale.</p>
+          <p>Niente schemi rigidi. Ogni passaggio parte da te, dal tuo ruolo e da ciò che ti serve davvero.</p>
+        </div>
+        <a class="btn" href="#contatti">Prenota l'Intake Session</a>
+      </div>
+      <ol class="timeline">
+        <li><span class="step">Passaggio 1</span><h3>Decodifica del ruolo e della routine</h3><p>Analizziamo la tua attività professionale o atletica per individuare dove perdi focus o dove si accumula lo stress operativo.</p></li>
+        <li><span class="step">Passaggio 2</span><h3>Il potere del «perché»</h3><p>Troviamo la tua vera forza motrice e i valori non negoziabili su cui poggia la tua resilienza.</p></li>
+        <li><span class="step">Passaggio 3</span><h3>Mappatura degli ostacoli</h3><p>Affrontiamo sia i limiti esterni (team, mercato, rivalità sportive) sia quelli interni (credenze limitanti, paura di fallire).</p></li>
+        <li><span class="step">Passaggio 4</span><h3>Analisi delle aspettative</h3><p>Definiamo le tue priorità assolute: più autostima, gestione agile dei conflitti, organizzazione del tempo.</p></li>
+        <li><span class="step">Passaggio 5</span><h3>Logistica personalizzata</h3><p>Strutturiamo un ritmo attivo di incontri, con esercizi pratici da svolgere tra una sessione e l'altra.</p>
+          <div class="chips"><span class="chip">3–4 sessioni al mese</span><span class="chip">30–45 minuti ciascuna</span></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+  </div>
+
+  <section class="block" id="perchi">
+    <p class="eyebrow">A chi è rivolto</p>
+    <h2>Per chi vuole evolvere senza perdere la serenità.</h2>
+    <div class="who">
+      <div>${markSVG(0)}<h3>Imprenditori</h3><p>Decisioni, team e pressione del mercato.</p></div>
+      <div>${markSVG(2)}<h3>Atleti</h3><p>Focus, gestione della gara e della rivalità.</p></div>
+      <div>${markSVG(1)}<h3>Professionisti</h3><p>Dai profili junior ai ruoli di livello senior.</p></div>
+      <div>${markSVG(3)}<h3>Chi cerca la rotta</h3><p>Ritrovare la bussola nella vita quotidiana.</p></div>
+    </div>
+  </section>
+
+  <div class="band">
+  <section class="block" id="articoli-home">
+    <p class="eyebrow">Articoli</p>
+    <h2>Idee per allenare la mente <span class="sample">TESTI DI ESEMPIO</span></h2>
+    <div class="list">${listRows(latest)}</div>
+    <p class="more"><a class="btn ghost" href="#articoli">Tutti gli articoli</a></p>
+  </section>
+  </div>
+
+  ${contactBlock()}`;
+}
+
+function articlesPage() {
+  return `
+  <section class="hero" style="padding-bottom:0">
+    <div class="hero-art" aria-hidden="true">${tangent({ w: 600, h: 600, cx: 300, cy: 300, R: 280, n: 6, v: 0, acc: 2, line: "#2c3135", dot: 4 })}</div>
+    <p class="eyebrow" style="margin-bottom:24px">Articoli</p>
+    <h1 style="font-size:clamp(44px,8vw,96px)">Pensieri su mente, <em>lavoro</em> e sport.</h1>
+    <p class="lead">Riflessioni ed esercizi pratici per gestire la pressione, trovare il tuo perché e proteggere il tuo equilibrio. <span class="sample">TESTI DI ESEMPIO</span></p>
+  </section>
+  <div class="list" style="margin-bottom:96px">${listRows(sorted())}</div>`;
+}
+
+function articlePage(slug) {
+  const list = sorted();
+  const i = list.findIndex(a => a.slug === slug);
+  if (i < 0) return null;
+  const a = list[i];
+  const next = list[(i + 1) % list.length];
+  const body = a.body.map(p => p.startsWith("## ") ? `<h2>${p.slice(3)}</h2>` : `<p>${p}</p>`).join("");
+  return `
+  <a class="back" href="#articoli">← Tutti gli articoli</a>
+  <header class="article-head">
+    <p class="eyebrow">${a.tag}</p>
+    <h1>${a.title}</h1>
+    <p class="meta">${fmt(a.date)} · ${a.minutes} minuti di lettura</p>
+  </header>
+  <div class="article-cover">${wideSVG(a.slug)}</div>
+  <article class="article-body">${body}</article>
+  <div class="after">
+    <a href="#articolo-${next.slug}"><span class="nextlabel">Prossimo articolo</span><span class="nexttitle">${next.title}</span></a>
+    <a class="btn" href="#contatti">Prenota l'Intake Session</a>
+  </div>`;
+}
+
+function wireForm() {
+  const f = document.getElementById("cform");
+  if (!f) return;
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    document.getElementById("status").textContent = "Questa è una bozza: il modulo non invia ancora nulla.";
+  });
+}
+
+function setNav(key) {
+  document.querySelectorAll("nav a[data-nav]").forEach(a => {
+    if (a.dataset.nav === key) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+  });
+}
+
+function route() {
+  const h = (location.hash || "#home").slice(1);
+  const sections = ["metodo", "storia", "percorso", "perchi", "contatti"];
+  let html = null, key = "", scrollTo = null, title = "Mindset Revolution";
+
+  if (h.startsWith("articolo-")) {
+    html = articlePage(h.slice(9));
+    key = "articoli";
+    const a = ARTICLES.find(x => x.slug === h.slice(9));
+    if (a) title = a.title + " · Mindset Revolution";
+  } else if (h === "articoli") {
+    html = articlesPage(); key = "articoli";
+  }
+  if (html === null) {
+    html = home();
+    if (sections.includes(h)) scrollTo = h;
+  }
+  app.innerHTML = html;
+  document.title = title;
+  setNav(key);
+  wireForm();
+  if (scrollTo) {
+    const el = document.getElementById(scrollTo);
+    if (el) el.scrollIntoView();
+  } else {
+    window.scrollTo(0, 0);
+  }
+}
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+
+</body>
+</html>

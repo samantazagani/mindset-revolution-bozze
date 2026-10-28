@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Mindset Revolution B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..700&family=Figtree:wght@300..600&display=swap">
+<style>
+/* Versione B. Layout: barra laterale fissa a sinistra, contenuti a destra, titoli sans enormi e compressi.
+   Motivo grafico: griglia di punti con un percorso in 5 tappe (le 5 fasi del metodo) che attraversa la pagina. */
+:root {
+  --bg: #090d0d;
+  --surface: #0f1514;
+  --surface-2: #141b1a;
+  --line: #202a28;
+  --fg: #eef1ef;
+  --text: #cfd6d3;
+  --muted: #8f9a96;
+  --accent: #a9c4b5;
+  --dot: #1f2a28;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--body); font-size: 17px; line-height: 1.7; font-weight: 400;
+  margin: 0; overflow-x: clip;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; margin: 0; color: var(--fg); text-wrap: balance; letter-spacing: -0.03em; line-height: 1; }
+p { margin: 0; }
+em { font-style: normal; color: var(--accent); }
+.label { font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.label.acc { color: var(--accent); }
+
+/* struttura: sidebar + contenuto */
+.shell { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); }
+.side { position: sticky; top: env(safe-area-inset-top, 0px); align-self: start; height: calc(100vh - env(safe-area-inset-top, 0px)); display: flex; flex-direction: column; justify-content: space-between; padding-block: 36px; }
+.brand { font-family: var(--display); font-size: 26px; line-height: 1; letter-spacing: -0.03em; color: var(--fg); font-weight: 600; display: block; }
+.brand small { display: block; margin-top: 10px; font-family: var(--body); font-size: 12px; letter-spacing: 0.04em; font-weight: 400; color: var(--muted); }
+.side nav { display: grid; gap: 4px; }
+.side nav a { display: flex; align-items: center; gap: 12px; padding: 7px 0; color: var(--muted); font-size: 15px; transition: color .2s; }
+.side nav a::before { content: ""; width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--muted); transition: background .2s, border-color .2s; }
+.side nav a:hover, .side nav a[aria-current="page"] { color: var(--fg); }
+.side nav a:hover::before, .side nav a[aria-current="page"]::before { background: var(--accent); border-color: var(--accent); }
+.side .sidecta { display: inline-block; align-self: start; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 3px; }
+.side .foot { font-size: 12px; color: var(--muted); }
+main { min-width: 0; }
+
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; background: var(--accent); color: var(--bg); border: 1px solid var(--accent); border-radius: 999px; font: 600 14px/1 var(--body); letter-spacing: 0.04em; cursor: pointer; transition: background .2s, color .2s; }
+.btn:hover { background: transparent; color: var(--accent); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: #36423f; }
+.btn.ghost:hover { border-color: var(--fg); }
+.textlink { color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 3px; font-size: 15px; }
+.textlink:hover { color: var(--fg); border-color: var(--fg); }
+
+/* hero */
+.hero { padding-top: clamp(56px, 9vw, 120px); }
+.hero h1 { font-size: clamp(48px, 8.4vw, 118px); font-weight: 500; max-width: 12ch; }
+.hero .lead { max-width: 56ch; margin-top: 32px; font-size: 19px; font-weight: 300; color: var(--text); }
+.hero .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.route { margin-top: clamp(40px, 6vw, 72px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.route svg { display: block; width: 100%; height: auto; }
+.numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0; margin: 0; }
+.numbers > div { padding: 32px 20px 32px 0; min-width: 0; }
+.numbers > div + div { padding-left: 24px; border-left: 1px solid var(--line); }
+.numbers dd { margin: 0; font-family: var(--display); font-size: clamp(42px, 5vw, 64px); color: var(--fg); letter-spacing: -0.03em; line-height: 1; font-weight: 500; }
+.numbers dt { order: 2; margin-top: 10px; color: var(--muted); font-size: 15px; }
+.numbers > div { display: flex; flex-direction: column; }
+
+/* sezioni */
+section.block { padding-block: clamp(72px, 10vw, 128px) 0; scroll-margin-top: 24px; }
+.block h2 { font-size: clamp(36px, 5.6vw, 72px); margin-top: 18px; max-width: 16ch; }
+.lead2 { margin-top: 24px; max-width: 54ch; }
+
+/* metodo */
+.moves { margin-top: 56px; border-top: 1px solid var(--line); }
+.move { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 8px 40px; align-items: baseline; padding-block: 36px; border-bottom: 1px solid var(--line); transition: padding-left .25s; }
+.move:hover { padding-left: 12px; }
+.move h3 { font-size: clamp(54px, 8.4vw, 112px); letter-spacing: -0.04em; font-weight: 500; }
+.move h3 i { font-style: normal; color: var(--accent); font-size: .28em; letter-spacing: 0; vertical-align: top; margin-left: 10px; font-family: var(--body); font-weight: 600; }
+.move .w { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.move .t { margin-top: 10px; max-width: 40ch; }
+.moreline { margin-top: 32px; }
+
+/* storia */
+.story { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 72px); align-items: end; }
+.arch { position: relative; aspect-ratio: 3 / 4; max-width: 100%; border-radius: 999px 999px 0 0; overflow: hidden; background: var(--surface-2); border: 1px solid var(--line); }
+.arch svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.arch .tag { position: absolute; left: 0; right: 0; bottom: 20px; text-align: center; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.prose { display: grid; gap: 20px; max-width: 58ch; margin-top: 32px; }
+.prose strong { color: var(--fg); font-weight: 600; }
+.sig { font-family: var(--display); font-size: 30px; color: var(--fg); letter-spacing: -0.02em; margin-top: 4px; }
+.pull { margin: clamp(48px, 7vw, 88px) 0 0; font-family: var(--display); font-size: clamp(30px, 4.6vw, 58px); line-height: 1.08; letter-spacing: -0.03em; color: var(--fg); max-width: 24ch; text-wrap: balance; font-weight: 500; }
+.pull span { color: var(--accent); }
+.pull small { display: block; margin-top: 20px; font-family: var(--body); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+/* percorso */
+.accordion { margin-top: 48px; border-top: 1px solid var(--line); }
+details { border-bottom: 1px solid var(--line); }
+summary { list-style: none; display: grid; grid-template-columns: 72px minmax(0, 1fr) 28px; gap: 16px; align-items: center; padding-block: 26px; cursor: pointer; }
+summary::-webkit-details-marker { display: none; }
+summary .n { font-family: var(--display); font-size: 40px; color: var(--accent); letter-spacing: -0.03em; line-height: 1; }
+summary h3 { font-size: clamp(24px, 3.2vw, 36px); letter-spacing: -0.025em; line-height: 1.1; }
+summary .pm { position: relative; width: 20px; height: 20px; justify-self: end; }
+summary .pm::before, summary .pm::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--fg); transition: transform .25s; }
+summary .pm::after { transform: rotate(90deg); }
+details[open] summary .pm::after { transform: rotate(0deg); }
+summary:hover h3 { color: var(--accent); }
+details .more-body { padding: 0 44px 32px 88px; max-width: 70ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.chip { padding: 6px 14px; border: 1px solid #36423f; border-radius: 999px; font-size: 14px; color: var(--fg); }
+.pathcta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; }
+
+/* per chi */
+.whos { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0; margin-top: 48px; }
+.whos > div { padding: 24px 20px 8px 0; border-top: 1px solid var(--line); min-width: 0; }
+.whos h3 { font-size: 32px; letter-spacing: -0.03em; }
+.whos p { margin-top: 10px; color: var(--muted); font-size: 16px; }
+
+/* articoli */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px 24px; margin-top: 48px; }
+.card { display: block; min-width: 0; }
+.cover { aspect-ratio: 4 / 3; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; transition: border-color .25s; }
+.cover svg { display: block; width: 100%; height: 100%; }
+.card:hover .cover { border-color: var(--accent); }
+.card .meta { margin-top: 18px; }
+.card h3 { font-size: 28px; margin-top: 8px; letter-spacing: -0.025em; line-height: 1.1; }
+.card p { margin-top: 10px; font-size: 16px; color: var(--muted); }
+.sample { display: inline-block; vertical-align: middle; margin-left: 10px; padding: 3px 10px; border: 1px solid #36423f; border-radius: 999px; font-family: var(--body); font-size: 11px; letter-spacing: 0.14em; color: var(--muted); font-weight: 600; letter-spacing: 0.12em; }
+
+/* articolo */
+.back { display: inline-block; padding-top: 40px; color: var(--muted); font-size: 14px; }
+.back:hover { color: var(--fg); }
+.article-head { padding-block: 40px 36px; max-width: 880px; }
+.article-head h1 { font-size: clamp(40px, 6.4vw, 84px); margin-top: 18px; }
+.article-head .meta { margin-top: 22px; color: var(--muted); font-size: 15px; }
+.article-cover { aspect-ratio: 21 / 8; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 52px; }
+.article-cover svg { display: block; width: 100%; height: 100%; }
+.article-body { max-width: 680px; display: grid; gap: 26px; font-size: 19px; line-height: 1.8; padding-bottom: 72px; }
+.article-body > p:first-child { font-size: 23px; color: var(--fg); font-weight: 300; line-height: 1.55; }
+.article-body h2 { font-size: 36px; margin: 22px 0 0; max-width: none; letter-spacing: -0.03em; }
+.after { border-top: 1px solid var(--line); padding-block: 44px 0; display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: center; }
+.after .nexttitle { font-family: var(--display); font-size: 32px; display: block; margin-top: 6px; color: var(--fg); max-width: 22ch; line-height: 1.05; letter-spacing: -0.03em; }
+
+/* contatti */
+.cta-band { margin-top: clamp(72px, 10vw, 128px); background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: clamp(28px, 5vw, 64px); display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.cta-band h2 { font-size: clamp(36px, 5vw, 64px); margin-top: 16px; max-width: 14ch; }
+.cta-band .lead2 { color: var(--text); }
+.addr { margin-top: 28px; font-size: 15px; color: var(--muted); }
+form { display: grid; gap: 20px; }
+form label { display: grid; gap: 6px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+input, select, textarea { background: transparent; color: var(--fg); border: 0; border-bottom: 1px solid #36423f; padding: 10px 0; font: inherit; font-size: 17px; font-weight: 400; letter-spacing: 0; text-transform: none; border-radius: 0; width: 100%; min-width: 0; }
+select option { background: var(--surface); color: var(--fg); }
+textarea { resize: vertical; min-height: 96px; }
+input:focus, select:focus, textarea:focus { outline: none; border-bottom-color: var(--accent); }
+form .btn { justify-self: start; }
+.status { min-height: 24px; color: var(--accent); font-size: 14px; }
+.sitefoot { margin-top: 64px; padding-block: 32px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+/* mobile / tablet: la sidebar diventa barra in alto */
+@media (max-width: 980px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .side { position: sticky; z-index: 20; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 20px; padding-block: 14px; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .brand small, .side .foot, .side .sidecta { display: none; }
+  .side nav { display: flex; flex-wrap: wrap; gap: 2px 18px; }
+  .side nav a { font-size: 14px; padding: 4px 0; }
+  .side nav a::before { display: none; }
+}
+@media (max-width: 760px) {
+  body { font-size: 16.5px; }
+  .story, .cta-band { grid-template-columns: minmax(0, 1fr); }
+  .arch { max-width: 300px; }
+  .move { grid-template-columns: minmax(0, 1fr); }
+  .numbers > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  summary { grid-template-columns: 44px minmax(0, 1fr) 24px; gap: 12px; }
+  summary .n { font-size: 30px; }
+  details .more-body { padding: 0 8px 28px 56px; }
+  .article-cover { aspect-ratio: 16 / 9; }
+  .cta-band { border-radius: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .move, .btn, .cover, summary .pm::after { transition: none; } }
+</style>
+</head>
+<body>
+
+
+<div class="shell">
+  <aside class="side">
+    <a class="brand" href="#home">Mindset<br>Revolution<small>Sara Rinaldi · Coaching</small></a>
+    <nav aria-label="Principale">
+      <a href="#metodo" data-nav="metodo">Metodo</a>
+      <a href="#storia" data-nav="storia">Storia</a>
+      <a href="#percorso" data-nav="percorso">Percorso</a>
+      <a href="#articoli" data-nav="articoli">Articoli</a>
+      <a href="#contatti" data-nav="contatti">Contatti</a>
+    </nav>
+    <div>
+      <a class="sidecta" href="#contatti">Prenota l'Intake</a>
+      <p class="foot" style="margin-top:20px">© 2026 · Bozza B</p>
+    </div>
+  </aside>
+  <main id="app"></main>
+</div>
+
+<script>
+/* ---------------------------------------------------------------
+   ARTICOLI: per aggiungerne uno basta una nuova voce in questo elenco.
+   Nel corpo, le righe che iniziano con "## " diventano sottotitoli.
+   I tre articoli qui sotto sono testi di esempio.
+---------------------------------------------------------------- */
+const ARTICLES = [
+  {
+    slug: "pressione-prima-della-prova", date: "2026-10-21", tag: "Pressione", minutes: 4,
+    title: "La pressione prima della prova non va eliminata",
+    excerpt: "Una riunione decisiva, una gara, un colloquio. Il corpo si attiva e molti lo leggono come un segnale di allarme.",
+    body: [
+      "Prima di una prova importante il battito sale, la mente accelera, lo stomaco si stringe. Molte persone cercano di spegnere tutto questo, e proprio lì perdono energia.",
+      "## Cambiare il significato del segnale",
+      "L'attivazione fisica è la stessa che serve per rendere al meglio. Cambia l'interpretazione: se la leggi come paura, ti blocca; se la leggi come preparazione, diventa carburante.",
+      "## Un esercizio per cominciare",
+      "Prima della prossima prova scrivi tre righe: che cosa sento, che cosa significa per me, che cosa posso fare nei prossimi dieci minuti. Poi fai solo quello. Nel percorso lavoriamo su questo tipo di routine, adattata al tuo ruolo."
+    ]
+  },
+  {
+    slug: "il-potere-del-perche", date: "2026-10-07", tag: "Obiettivi", minutes: 5,
+    title: "Gli obiettivi non bastano: serve un perché",
+    excerpt: "Un obiettivo dice dove vuoi arrivare. Solo il motivo ti tiene in marcia quando la strada si fa lunga.",
+    body: [
+      "Fissare obiettivi è facile. Mantenerli quando il lavoro si accumula, la squadra rallenta o la fiducia cala è un'altra storia.",
+      "## La forza che sta sotto",
+      "Chi regge nel tempo ha di solito un motivo chiaro e personale, legato ai propri valori. Non è uno slogan: è la risposta concreta alla domanda «perché lo faccio davvero?».",
+      "## Come trovarlo",
+      "Parti da un momento in cui ti sei sentito/a pienamente al tuo posto. Che cosa stava succedendo? Quale valore era in gioco? Da lì si costruiscono obiettivi che ti appartengono, non che ti vengono imposti."
+    ]
+  },
+  {
+    slug: "credenze-limitanti", date: "2026-09-23", tag: "Autostima", minutes: 4,
+    title: "Come riconoscere una credenza che ti limita",
+    excerpt: "Le frasi che ti ripeti senza accorgertene decidono più scelte di quanto pensi.",
+    body: [
+      "«Non sono portato per questo», «non è il mio momento», «se sbaglio perdo tutto». Sono frasi che sembrano fatti e funzionano come regole.",
+      "## Tre segnali",
+      "Una credenza limitante usa parole assolute (sempre, mai, tutto), si presenta come una verità senza eccezioni e ti fa rinunciare prima ancora di provare.",
+      "## Metterla alla prova",
+      "Cerca un'eccezione: una volta in cui è andata diversamente. Una sola basta per smettere di trattarla come una legge e iniziare a trattarla come un'ipotesi."
+    ]
+  }
+];
+
+const app = document.getElementById("app");
+const fmt = d => new Date(d + "T12:00:00").toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" });
+const sorted = () => [...ARTICLES].sort((a, b) => b.date.localeCompare(a.date));
+const hash = s => [...s].reduce((a, c) => a + c.charCodeAt(0), 0);
+
+/* Motivo grafico: griglia di punti + percorso a tappe (n nodi) in verde salvia.
+   rising = il percorso sale da sinistra a destra; altrimenti le quote dipendono dal seme. */
+function dotRoute({ w, h, cols, rows, n = 5, seed = 1, rising = false, nums = false, r = 7, fs = 22 }) {
+  const gx = w / cols, gy = h / rows;
+  let s = seed * 9301 + 49297;
+  const rnd = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  const xs = [], ys = [];
+  for (let k = 0; k < n; k++) {
+    xs.push(Math.round(1 + k * (cols - 3) / (n - 1)));
+    ys.push(rising
+      ? Math.max(1, Math.min(rows - 2, Math.round(rows - 2 - k * (rows - 3) / (n - 1) + (k % 2 ? -1 : 1) * (k && k < n - 1 ? 1 : 0))))
+      : 1 + Math.floor(rnd() * (rows - 2)));
+  }
+  const X = i => (i + 0.5) * gx, Y = j => (j + 0.5) * gy;
+  let g = `<svg viewBox="0 0 ${w} ${h}" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid meet">`;
+  for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) g += `<circle cx="${X(i).toFixed(1)}" cy="${Y(j).toFixed(1)}" r="1.6" fill="#26322f"/>`;
+  let d = `M${X(xs[0])} ${Y(ys[0])}`;
+  for (let k = 0; k < n - 1; k++) {
+    const mx = (xs[k] + xs[k + 1]) / 2;
+    d += ` L${X(mx)} ${Y(ys[k])} L${X(mx)} ${Y(ys[k + 1])} L${X(xs[k + 1])} ${Y(ys[k + 1])}`;
+  }
+  g += `<path d="${d}" stroke="#a9c4b5" stroke-width="1.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>`;
+  for (let k = 0; k < n; k++) {
+    const last = k === n - 1;
+    g += `<circle cx="${X(xs[k])}" cy="${Y(ys[k])}" r="${r}" fill="${last ? "#a9c4b5" : "#090d0d"}" stroke="#a9c4b5" stroke-width="1.5" vector-effect="non-scaling-stroke"/>`;
+    if (nums) g += `<text x="${X(xs[k])}" y="${Y(ys[k]) - r - 10}" text-anchor="middle" font-size="${fs}" font-weight="600" fill="#a9c4b5" stroke="#090d0d" stroke-width="6" paint-order="stroke" font-family="Figtree, sans-serif">${k + 1}</text>`;
+  }
+  return g + "</svg>";
+}
+const coverSVG = slug => dotRoute({ w: 400, h: 300, cols: 14, rows: 10, n: 5, seed: hash(slug), r: 5 });
+const wideSVG = slug => dotRoute({ w: 1050, h: 400, cols: 35, rows: 13, n: 5, seed: hash(slug) + 7, r: 7 });
+const heroSVG = () => dotRoute({ w: 1000, h: 300, cols: 34, rows: 10, n: 5, rising: true, nums: true, r: 9, fs: 24 });
+const archSVG = () => {
+  const w = 300, h = 400, cols = 12, rows = 16, gx = w / cols, gy = h / rows;
+  let g = `<svg viewBox="0 0 ${w} ${h}" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid slice">`;
+  for (let i = 0; i < cols; i++) for (let j = 0; j < rows; j++) g += `<circle cx="${((i + .5) * gx).toFixed(1)}" cy="${((j + .5) * gy).toFixed(1)}" r="1.6" fill="#2a3835"/>`;
+  g += `<text x="150" y="215" text-anchor="middle" font-size="88" font-weight="500" fill="#eef1ef" stroke="#141b1a" stroke-width="14" paint-order="stroke" font-family="Bricolage Grotesque, sans-serif" letter-spacing="-3">SR</text>`;
+  return g + "</svg>";
+};
+
+function cards(items) {
+  return items.map(a => `
+    <a class="card" href="#articolo-${a.slug}">
+      <div class="cover">${coverSVG(a.slug)}</div>
+      <p class="label meta"><span style="color:var(--accent)">${a.tag}</span> · ${fmt(a.date)}</p>
+      <h3>${a.title}</h3>
+      <p>${a.excerpt}</p>
+    </a>`).join("");
+}
+
+function ctaBlock() {
+  return `
+  <section class="cta-band" id="contatti">
+    <div>
+      <p class="label acc">Contatti</p>
+      <h2>Il tuo successo è il mio unico obiettivo.</h2>
+      <p class="lead2">Che tu sia un imprenditore, un atleta, un professionista o semplicemente una persona che sente il bisogno di sbloccare il proprio potenziale e ritrovare la propria strada: se vuoi evolvere senza perdere la tua serenità, iniziamo da qui.</p>
+      <p class="addr">[email di Sara da inserire]</p>
+    </div>
+    <form id="cform" novalidate>
+      <label for="f-nome">Nome<input id="f-nome" name="nome" autocomplete="name"></label>
+      <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email"></label>
+      <label for="f-ruolo">Di cosa ti occupi
+        <select id="f-ruolo" name="ruolo"><option>Imprenditore/trice</option><option>Atleta</option><option>Professionista</option><option>Altro</option></select>
+      </label>
+      <label for="f-msg">Messaggio<textarea id="f-msg" name="msg"></textarea></label>
+      <button class="btn" type="submit">Richiedi l'Intake Session →</button>
+      <p class="status" id="status" role="status"></p>
+    </form>
+  </section>
+  <div class="sitefoot"><span>© 2026 Sara Rinaldi · Mindset Revolution</span><span>Bozza di lavoro · versione B</span></div>`;
+}
+
+function home() {
+  const latest = sorted().slice(0, 3);
+  return `
+  <section class="hero">
+    <h1>Performance d'eccellenza. <em>Equilibrio</em> duraturo.</h1>
+    <p class="lead">Inizia oggi la tua evoluzione. Con un percorso strutturato impariamo a mappare i reali obiettivi, gestire la pressione interna e definire flussi d'azione efficaci per sbloccare la tua visione di successo.</p>
+    <div class="actions">
+      <a class="btn" href="#contatti">Prenota l'Intake Session →</a>
+      <a class="btn ghost" href="#percorso">Scopri il percorso</a>
+    </div>
+    <div class="route" role="img" aria-label="Il percorso in 5 passaggi">${heroSVG()}</div>
+    <dl class="numbers">
+      <div><dd>5+</dd><dt>anni di esperienza</dt></div>
+      <div><dd>3–4</dd><dt>sessioni al mese</dt></div>
+      <div><dd>30–45′</dd><dt>di focus intenso</dt></div>
+      <div><dd>Assoluta</dd><dt>riservatezza</dt></div>
+    </dl>
+  </section>
+
+  <section class="block" id="metodo">
+    <p class="label acc">Il metodo</p>
+    <h2>Tre mosse per passare dall'intenzione all'azione.</h2>
+    <div class="moves">
+      <div class="move"><h3>Mappare</h3><div><p class="w">I reali obiettivi</p><p class="t">Partiamo da dove sei: il tuo ruolo, la tua routine, ciò che vuoi davvero. Troviamo il tuo «perché», la forza che regge tutto il resto.</p></div></div>
+      <div class="move"><h3>Gestire</h3><div><p class="w">La pressione interna</p><p class="t">Lavoriamo su stress, credenze limitanti e conflitti, perché l'eccellenza non si paghi con la tua serenità.</p></div></div>
+      <div class="move"><h3>Agire</h3><div><p class="w">Flussi d'azione efficaci</p><p class="t">Gli esercizi pratici tra una sessione e l'altra trasformano ciò che hai capito in abitudini concrete.</p></div></div>
+    </div>
+    <p class="moreline"><a class="textlink" href="#percorso">Vedi i 5 passaggi dell'Intake Session →</a></p>
+  </section>
+
+  <section class="block" id="storia">
+    <div class="story">
+      <div class="arch" role="img" aria-label="Spazio per la foto di Sara">${archSVG()}<span class="tag">Qui andrà la foto di Sara</span></div>
+      <div>
+        <p class="label acc">La mia storia</p>
+        <h2>Ho imparato a leggere le persone viaggiando.</h2>
+        <div class="prose">
+          <p>Ciao, sono Sara. A 19 anni ho preso in mano la mia vita e ho iniziato a girare il mondo. Non sono diventata una coach restando seduta dietro una scrivania a leggere manuali di teoria.</p>
+          <p>Ho viaggiato, esplorato, vissuto da vicino i volti e le storie di culture diverse. Questo viaggio mi ha permesso di sviluppare un dono innato: la capacità di <strong>leggere le persone oltre la superficie</strong>, decodificando i loro reali bisogni in pochi istanti.</p>
+          <p>Da oltre 5 anni metto questa sensibilità internazionale al servizio di chiunque desideri una svolta: dai profili junior ai ruoli di livello senior, fino a chi semplicemente vuole ritrovare la bussola nella propria vita quotidiana.</p>
+          <p class="sig">Sara Rinaldi</p>
+        </div>
+      </div>
+    </div>
+    <p class="pull">Il vero successo non è una vetta da raggiungere <span>in solitudine</span>, ma un percorso da fare insieme, proteggendo il tuo tempo, la tua serenità e la tua salute.<small>La mia filosofia: il valore del dono</small></p>
+  </section>
+
+  <section class="block" id="percorso">
+    <p class="label acc">L'alleanza strategica</p>
+    <h2>Si comincia con l'Intake Session.</h2>
+    <p class="lead2">È la base del nostro viaggio: uno spazio protetto, coperto da riservatezza assoluta, in cui mappiamo la tua situazione attuale. Niente schemi rigidi.</p>
+    <div class="accordion">
+      <details open><summary><span class="n">1</span><h3>Decodifica del ruolo e della routine</h3><span class="pm"></span></summary><div class="more-body"><p>Analizziamo la tua attività professionale o atletica per individuare dove perdi focus o dove si accumula lo stress operativo.</p></div></details>
+      <details><summary><span class="n">2</span><h3>Il potere del «perché»</h3><span class="pm"></span></summary><div class="more-body"><p>Troviamo la tua vera forza motrice e i valori non negoziabili su cui poggia la tua resilienza.</p></div></details>
+      <details><summary><span class="n">3</span><h3>Mappatura degli ostacoli</h3><span class="pm"></span></summary><div class="more-body"><p>Affrontiamo sia i limiti esterni (team, mercato, rivalità sportive) sia quelli interni (credenze limitanti, paura di fallire).</p></div></details>
+      <details><summary><span class="n">4</span><h3>Analisi delle aspettative</h3><span class="pm"></span></summary><div class="more-body"><p>Definiamo le tue priorità assolute: più autostima, gestione agile dei conflitti, organizzazione del tempo.</p></div></details>
+      <details><summary><span class="n">5</span><h3>Logistica personalizzata</h3><span class="pm"></span></summary><div class="more-body"><p>Strutturiamo un ritmo attivo di incontri, con esercizi pratici da svolgere tra una sessione e l'altra.</p><div class="chips"><span class="chip">3–4 sessioni al mese</span><span class="chip">30–45 minuti ciascuna</span></div></div></details>
+    </div>
+    <div class="pathcta"><p>Il percorso è pensato per chi vuole evolvere senza perdere la propria serenità.</p><a class="btn" href="#contatti">Prenota l'Intake Session →</a></div>
+  </section>
+
+  <section class="block" id="perchi">
+    <p class="label acc">A chi è rivolto</p>
+    <h2>Per chi vuole evolvere senza perdere la serenità.</h2>
+    <div class="whos">
+      <div><h3>Imprenditori</h3><p>Decisioni, team e pressione del mercato.</p></div>
+      <div><h3>Atleti</h3><p>Focus, gestione della gara e della rivalità.</p></div>
+      <div><h3>Professionisti</h3><p>Dai profili junior ai ruoli di livello senior.</p></div>
+      <div><h3>Chi cerca la rotta</h3><p>Ritrovare la bussola nella vita quotidiana.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="articoli-home">
+    <p class="label acc">Articoli</p>
+    <h2>Idee per allenare la mente <span class="sample">TESTI DI ESEMPIO</span></h2>
+    <div class="grid">${cards(latest)}</div>
+    <p class="moreline" style="margin-top:36px"><a class="btn ghost" href="#articoli">Tutti gli articoli</a></p>
+  </section>
+
+  ${ctaBlock()}`;
+}
+
+function articlesPage() {
+  return `
+  <section class="hero">
+    <p class="label acc" style="margin-bottom:22px">Articoli</p>
+    <h1 style="font-size:clamp(44px,7.4vw,100px);max-width:14ch">Pensieri su mente, <em>lavoro</em> e sport.</h1>
+    <p class="lead">Riflessioni ed esercizi pratici per gestire la pressione, trovare il tuo perché e proteggere il tuo equilibrio. <span class="sample">TESTI DI ESEMPIO</span></p>
+  </section>
+  <div class="grid" style="margin-top:56px">${cards(sorted())}</div>
+  <div class="sitefoot"><span>© 2026 Sara Rinaldi · Mindset Revolution</span><span>Bozza di lavoro · versione B</span></div>`;
+}
+
+function articlePage(slug) {
+  const list = sorted();
+  const i = list.findIndex(a => a.slug === slug);
+  if (i < 0) return null;
+  const a = list[i], next = list[(i + 1) % list.length];
+  const body = a.body.map(p => p.startsWith("## ") ? `<h2>${p.slice(3)}</h2>` : `<p>${p}</p>`).join("");
+  return `
+  <a class="back" href="#articoli">← Tutti gli articoli</a>
+  <header class="article-head">
+    <p class="label acc">${a.tag}</p>
+    <h1>${a.title}</h1>
+    <p class="meta">${fmt(a.date)} · ${a.minutes} minuti di lettura</p>
+  </header>
+  <div class="article-cover">${wideSVG(a.slug)}</div>
+  <article class="article-body">${body}</article>
+  <div class="after">
+    <a href="#articolo-${next.slug}"><span class="label">Prossimo articolo</span><span class="nexttitle">${next.title}</span></a>
+    <a class="btn" href="#contatti">Prenota l'Intake Session →</a>
+  </div>
+  <div class="sitefoot"><span>© 2026 Sara Rinaldi · Mindset Revolution</span><span>Bozza di lavoro · versione B</span></div>`;
+}
+
+function wireForm() {
+  const f = document.getElementById("cform");
+  if (!f) return;
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    document.getElementById("status").textContent = "Questa è una bozza: il modulo non invia ancora nulla.";
+  });
+}
+
+function setNav(key) {
+  document.querySelectorAll(".side nav a[data-nav]").forEach(a => {
+    if (a.dataset.nav === key) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+  });
+}
+
+function route() {
+  const h = (location.hash || "#home").slice(1);
+  const sections = ["metodo", "storia", "percorso", "perchi", "contatti"];
+  let html = null, key = "", scrollTo = null, title = "Mindset Revolution B";
+
+  if (h.startsWith("articolo-")) {
+    html = articlePage(h.slice(9));
+    key = "articoli";
+    const a = ARTICLES.find(x => x.slug === h.slice(9));
+    if (a) title = a.title + " · Mindset Revolution";
+  } else if (h === "articoli") {
+    html = articlesPage(); key = "articoli";
+  }
+  if (html === null) {
+    html = home();
+    if (sections.includes(h)) { scrollTo = h; key = h; }
+  }
+  app.innerHTML = html;
+  document.title = title;
+  setNav(key);
+  wireForm();
+  if (scrollTo) {
+    const el = document.getElementById(scrollTo);
+    if (el) el.scrollIntoView();
+  } else {
+    window.scrollTo(0, 0);
+  }
+}
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+
+</body>
+</html>

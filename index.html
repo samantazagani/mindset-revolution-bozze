@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Mindset Revolution, proposte</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap">
+<style>
+:root { --bg:#0c0d0e; --surface:#131516; --line:#262b2e; --fg:#ecebe6; --muted:#9aa0a6; --accent:#b9a77c; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: #d6d4cf; font-family: "Manrope", system-ui, sans-serif; font-size: 17px; line-height: 1.7; padding: 0 max(16px, env(safe-area-inset-left, 0px)); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: clamp(48px, 9vw, 112px); }
+.eyebrow { display: flex; align-items: center; gap: 14px; font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.eyebrow::before { content: ""; width: 32px; height: 1px; background: var(--accent); }
+h1 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: clamp(42px, 7vw, 84px); line-height: 1.04; margin: 20px 0 0; color: var(--fg); max-width: 16ch; text-wrap: balance; }
+h1 em { color: var(--accent); }
+.lead { max-width: 54ch; margin-top: 24px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 56px; }
+.opt { display: flex; flex-direction: column; gap: 12px; background: var(--surface); border: 1px solid var(--line); padding: 28px; min-width: 0; transition: border-color .25s; }
+.opt:hover { border-color: var(--accent); }
+.sw { display: flex; gap: 6px; }
+.sw i { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #ffffff22; display: block; }
+.opt h2 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.1; margin: 12px 0 0; color: var(--fg); }
+.opt p { color: var(--muted); font-size: 15px; }
+.opt .go { margin-top: auto; padding-top: 16px; color: var(--accent); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
+.foot { margin-top: 56px; color: var(--muted); font-size: 14px; max-width: 60ch; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">Mindset Revolution · Sara Rinaldi</p>
+  <h1>Tre proposte per il tuo <em>nuovo sito</em>.</h1>
+  <p class="lead">Stessi testi e stessa sezione articoli, tre stili diversi. Apri ognuna, scorri tutta la pagina e prova anche la lettura di un articolo. Poi dimmi quale ti convince di più.</p>
+  <div class="grid">
+    <a class="opt" href="a.html">
+      <span class="sw"><i style="background:#0c0d0e"></i><i style="background:#b9a77c"></i><i style="background:#ecebe6"></i></span>
+      <h2>A · Grafite e ottone</h2>
+      <p>Impostazione editoriale con titoli serif, menu in alto, linee fluide e percorso in 5 passaggi come linea del tempo.</p>
+      <span class="go">Apri la proposta →</span>
+    </a>
+    <a class="opt" href="b.html">
+      <span class="sw"><i style="background:#090d0d"></i><i style="background:#a9c4b5"></i><i style="background:#eef1ef"></i></span>
+      <h2>B · Nero e salvia</h2>
+      <p>Menu laterale fisso, titoli giganti e compatti, griglia di punti con percorso a tappe e passaggi che si aprono al clic.</p>
+      <span class="go">Apri la proposta →</span>
+    </a>
+    <a class="opt" href="c.html">
+      <span class="sw"><i style="background:#0a0b14"></i><i style="background:#a9b4ea"></i><i style="background:#f0f1f8"></i></span>
+      <h2>C · Blu notte</h2>
+      <p>Composizione centrata e simmetrica, titoli leggerissimi, archi che sorgono dal basso e percorso orizzontale.</p>
+      <span class="go">Apri la proposta →</span>
+    </a>
+  </div>
+  <p class="foot">Sono bozze: i tre articoli sono testi di esempio, il modulo di contatto non invia nulla e manca ancora la foto.</p>
+</main>
+</body>
+</html>
