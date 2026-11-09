@@ -20,7 +20,7 @@ a { color: inherit; text-decoration: none; }
 h1 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: clamp(42px, 7vw, 84px); line-height: 1.04; margin: 20px 0 0; color: var(--fg); max-width: 16ch; text-wrap: balance; }
 h1 em { color: var(--accent); }
 .lead { max-width: 54ch; margin-top: 24px; color: var(--muted); }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 56px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 56px; }
 .opt { display: flex; flex-direction: column; gap: 12px; background: var(--surface); border: 1px solid var(--line); padding: 28px; min-width: 0; transition: border-color .25s; }
 .opt:hover { border-color: var(--accent); }
 .sw { display: flex; gap: 6px; }
@@ -34,8 +34,8 @@ h1 em { color: var(--accent); }
 <body>
 <main class="wrap">
   <p class="eyebrow">Mindset Revolution · Sara Rinaldi</p>
-  <h1>Tre proposte per il tuo <em>nuovo sito</em>.</h1>
-  <p class="lead">Stessi testi e stessa sezione articoli, tre stili diversi. Apri ognuna, scorri tutta la pagina e prova anche la lettura di un articolo. Poi dimmi quale ti convince di più.</p>
+  <h1>Quattro proposte per il tuo <em>nuovo sito</em>.</h1>
+  <p class="lead">Stessi testi, stili diversi. Apri ognuna e scorri tutta la pagina. Le prime tre hanno la sezione articoli, la D è la più recente: ha la tua foto, è senza articoli ed è curata anche per il telefono. Poi dimmi quale ti convince di più.</p>
   <div class="grid">
     <a class="opt" href="a.html">
       <span class="sw"><i style="background:#0c0d0e"></i><i style="background:#b9a77c"></i><i style="background:#ecebe6"></i></span>
@@ -55,8 +55,14 @@ h1 em { color: var(--accent); }
       <p>Composizione centrata e simmetrica, titoli leggerissimi, archi che sorgono dal basso e percorso orizzontale.</p>
       <span class="go">Apri la proposta →</span>
     </a>
+    <a class="opt" href="d.html">
+      <span class="sw"><i style="background:#f7f7fb"></i><i style="background:#4651b0"></i><i style="background:#14162b"></i></span>
+      <h2>D · Chiara e leggera</h2>
+      <p>La proposta C su fondo chiaro, con la tua foto e le linee ondulate. Senza articoli, con menu e pulsante di prenotazione pensati per il telefono.</p>
+      <span class="go">Apri la proposta →</span>
+    </a>
   </div>
-  <p class="foot">Sono bozze: i tre articoli sono testi di esempio, il modulo di contatto non invia nulla e manca ancora la foto.</p>
+  <p class="foot">Sono bozze: gli articoli di A, B e C sono testi di esempio, il modulo di contatto non invia nulla e l'indirizzo email va ancora inserito.</p>
 </main>
 </body>
 </html>
